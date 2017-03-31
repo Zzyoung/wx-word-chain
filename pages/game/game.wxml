@@ -1,0 +1,62 @@
+<view class="container">
+    <view class="header clearfix">
+        <view class="score">0</view>
+        <view class="timer-wrapper paused">
+            <view class="num">15</view>
+            <view class="left"></view>
+            <view class="right"></view>
+            <view class="rotate"></view>
+        </view>
+        <view class="achter"></view>
+    </view>
+    <view class="main">
+      <scroll-view id="word-chain" scroll-top="{{scrollTop}}">
+        <view class="word-item" wx:for="{{wordChain}}" wx:key="unique" wx:for-item="word">
+            <text class="pre-word">{{word.preWord}}<text class="last-letter">{{word.lastLetter}}</text></text>
+            <view class="pass"></view>
+        </view>
+      </scroll-view>
+    </view>
+    <view id="error-msg" wx:if="{{errorMsg !== ''}}">{{errorMsg}}</view>
+    <view class="input-wrapper">
+      <view type="text" id="answer-wrapper" class="focus">
+        <text id="answer-input">{{answer}}</text>
+      </view>
+      <text class="arrow" id="answer-btn" bindtap="responseAnswer">ok</text>
+    </view>
+</view>
+<view id="keyboard" class="">
+    <view class="first-line clearfix">
+    <text>q</text>
+    <text>w</text>
+    <text>e</text>
+    <text>r</text>
+    <text>t</text>
+    <text>y</text>
+    <text>u</text>
+    <text>i</text>
+    <text>o</text>
+    <text>p</text>
+    </view>
+    <view class="second-line clearfix">
+    <text>a</text>
+    <text>s</text>
+    <text>d</text>
+    <text>f</text>
+    <text>g</text>
+    <text>h</text>
+    <text>j</text>
+    <text>k</text>
+    <text>l</text>
+    </view>
+    <view class="third-line clearfix">
+    <text>z</text>
+    <text>x</text>
+    <text>c</text>
+    <text>v</text>
+    <text>b</text>
+    <text>n</text>
+    <text>m</text>
+    <text class="del">删除</text>
+    </view>
+</view>
