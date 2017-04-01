@@ -10,7 +10,7 @@
         <view class="achter"></view>
     </view>
     <view class="main">
-      <scroll-view id="word-chain" scroll-top="{{scrollTop}}">
+      <scroll-view id="word-chain" scroll-y="true" scroll-top="{{scrollTop}}">
         <view class="word-item" wx:for="{{wordChain}}" wx:key="unique" wx:for-item="word">
             <text class="pre-word">{{word.preWord}}<text class="last-letter">{{word.lastLetter}}</text></text>
             <view class="pass"></view>

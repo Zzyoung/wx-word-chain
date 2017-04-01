@@ -43,10 +43,8 @@ Page({
         
     },
     responseAnswer: function () {
-        console.log(123);
         this.setData({
-            scrollTop: 100
+            scrollTop: this.data.scrollTop + 60
         });
-        console.log(this.scrollTop);
     }
 });
