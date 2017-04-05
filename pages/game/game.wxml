@@ -1,13 +1,12 @@
 <view class="container">
     <view class="header clearfix">
-        <view class="score">0</view>
-        <view class="timer-wrapper paused">
-            <view class="num">15</view>
+        <view class="score">{{score}}</view>
+        <view class="timer-wrapper {{timerStatus}}">
+            <view class="num">{{timerNumber}}</view>
             <view class="left"></view>
             <view class="right"></view>
             <view class="rotate"></view>
         </view>
-        <view class="achter"></view>
     </view>
     <view class="main">
       <scroll-view id="word-chain" scroll-y="true" scroll-top="{{scrollTop}}">
@@ -25,38 +24,38 @@
       <text class="arrow" id="answer-btn" bindtap="responseAnswer">ok</text>
     </view>
 </view>
-<view id="keyboard" class="">
+<view id="keyboard" class="" bindtap="writeAnswer">
     <view class="first-line clearfix">
-    <text>q</text>
-    <text>w</text>
-    <text>e</text>
-    <text>r</text>
-    <text>t</text>
-    <text>y</text>
-    <text>u</text>
-    <text>i</text>
-    <text>o</text>
-    <text>p</text>
+        <text data-letter="q">q</text>
+        <text data-letter="w">w</text>
+        <text data-letter="e">e</text>
+        <text data-letter="r">r</text>
+        <text data-letter="t">t</text>
+        <text data-letter="y">y</text>
+        <text data-letter="u">u</text>
+        <text data-letter="i">i</text>
+        <text data-letter="o">o</text>
+        <text data-letter="p">p</text>
     </view>
     <view class="second-line clearfix">
-    <text>a</text>
-    <text>s</text>
-    <text>d</text>
-    <text>f</text>
-    <text>g</text>
-    <text>h</text>
-    <text>j</text>
-    <text>k</text>
-    <text>l</text>
+        <text data-letter="a">a</text>
+        <text data-letter="s">s</text>
+        <text data-letter="d">d</text>
+        <text data-letter="f">f</text>
+        <text data-letter="g">g</text>
+        <text data-letter="h">h</text>
+        <text data-letter="j">j</text>
+        <text data-letter="k">k</text>
+        <text data-letter="l">l</text>
     </view>
     <view class="third-line clearfix">
-    <text>z</text>
-    <text>x</text>
-    <text>c</text>
-    <text>v</text>
-    <text>b</text>
-    <text>n</text>
-    <text>m</text>
-    <text class="del">删除</text>
+        <text data-letter="z">z</text>
+        <text data-letter="x">x</text>
+        <text data-letter="c">c</text>
+        <text data-letter="v">v</text>
+        <text data-letter="b">b</text>
+        <text data-letter="n">n</text>
+        <text data-letter="m">m</text>
+        <text class="del" data-letter="delete">删除</text>
     </view>
 </view>

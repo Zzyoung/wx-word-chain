@@ -5,6 +5,8 @@ function Dictionary () {
   initDictionary(this);
 }
 
+Dictionary.prototype = {};
+
 Dictionary.prototype.getByFirstLetter = function (prefix) {
   var result = this.data.getByFirstLetter(prefix);
   return result;
