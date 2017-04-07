@@ -1,12 +1,12 @@
 {
   "pages":[
-    "pages/game/game",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/game/game"
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#EAF4E9",
+    "navigationBarTitleText": " ",
+    "navigationBarTextStyle":"#fff"
   }
 }

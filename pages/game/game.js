@@ -12,28 +12,52 @@ Page({
         timerNumber: 15,
         timerId: null,
         wordChain: [],
-        scrollTop: 0
+        scrollTop: 0,
+        gameover: false,
+        resultMsg: ''
     },
-    onShow: function () {
+    onReady: function () {
         this.start();
         
     },
     start: function () {
         var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        this.setData({
+            wordChain: [],
+            score: 0,
+            gameover: false,
+            resultMsg: '',
+            scrollTop: 0,
+            errorMsg: ' '
+        });
         var computerAnswer = computer.default.responseAnswer(letters[new Date().getTime() % 25]);
         this.answer(computerAnswer, 'computer');
         this.startTimer();
     },
+    restart: function () {
+        var wordChain = this.data.wordChain;
+        for (var i = 0; i < wordChain.length; i++) {
+            dictionary.default.add(wordChain[i]);
+        }
+        this.start();
+    },
     validate: function (word) {
         var search = dictionary.default.get(word);
-        var isRepeat = this.data.wordChain.indexOf(word) >= 0;
+        var wordChain = this.data.wordChain;
+        var isRepeat = false;
+        for (var i = 0; i < wordChain.length; i++) {
+            var wordItem = wordChain[i];
+            if (wordItem.word === word) {
+                isRepeat = true;
+                break;
+            }
+        }
         if (isRepeat === true) {
             return {
                 status: false,
                 msg: '这个单词已经出现过了'
             }
         }
-        console.log(search, word);
         var validate = search === word;
         if (validate) {
             dictionary.default.remove(word);
@@ -49,13 +73,13 @@ Page({
     },
     answer: function (word, role) {
         var self = this;
-        // var validate = this.validate(word);
-        // if (!validate.status) {
-        //     this.setData({
-        //         errorMsg: validate.msg
-        //     });
-        //     return false;
-        // }
+        var validate = this.validate(word);
+        if (!validate.status) {
+            this.setData({
+                errorMsg: validate.msg
+            });
+            return false;
+        }
 
         var oldWordChain = this.data.wordChain;
         oldWordChain.push({
@@ -67,12 +91,11 @@ Page({
             wordChain: oldWordChain,
             score: this.data.score + 1
         });
-        // setTimeout(function () {
-        //     self.setData({
-        //         scrollTop: (oldWordChain.length + 2) * 60
-        //     });
-        // },400);
         this.scrollDown(0, 400);
+        if (this.data.score === 50) {
+            this.gameOver('player');
+            return;
+        }
         this.startTimer();
         if (role === 'computer') {
             this.setData({
@@ -102,9 +125,9 @@ Page({
         });
         currentTime = currentTime + 20;
         if (currentTime <= duration) {
-            requestAnimationFrame(function(){
+            setTimeout(function(){
                 self.scrollDown(currentTime,duration);
-            });
+            },16.7);
         }
     },
     responseAnswer: function () {
@@ -131,6 +154,7 @@ Page({
             if (self.data.timerNumber === 0) {
                 clearInterval(self.timerId);
                 // 电脑获胜
+                self.gameOver('computer');
             }
         }, 1000);
     },
@@ -153,5 +177,23 @@ Page({
         this.setData({
             answer: newAnswer
         })
+    },
+    gameOver: function (winner) {
+        console.log(winner);
+        clearInterval(this.data.timerId);
+        if (winner === 'computer') {
+            this.setData({
+                gameover: true,
+                timerStatus: 'no-animation',
+                resultMsg: 'GAME OVER!'
+            });
+        } else {
+            console.log(123);
+            this.setData({
+                gameover: true,
+                timerStatus: 'no-animation',
+                resultMsg: 'YOU WIN!'
+            })
+        }
     }
 });

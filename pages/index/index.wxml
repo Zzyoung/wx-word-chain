@@ -1,11 +1,13 @@
 <!--index.wxml-->
 <view class="container">
   <view class="header">单词接龙</view>
-  <button class="start" bindtap="startGame">开始游戏</button>
+  <view class="start" bindtap="startGame">开始游戏</view>
   <view class="rules">
-    <view>游戏规则</view>
-    <view>1.以上一个单词结尾字母开始</view>
-    <view>2.一场游戏中单词不能重复出现</view>
-    <view>3.每个接龙单词必须在规定时间内完成</view>
+    <view class="rules-title">游戏规则</view>
+    <view class="rules-content">
+      <view>1.以上一个单词结尾字母开始</view>
+      <view>2.一场游戏中单词不能重复出现</view>
+      <view>3.每个接龙单词必须在规定时间内完成</view>
+    </view>
   </view>
 </view>

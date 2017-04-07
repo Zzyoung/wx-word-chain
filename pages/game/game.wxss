@@ -22,7 +22,7 @@ page {
     visibility: hidden
 }
 
-.score {
+.header .score {
     position: absolute;
     top:10px;
     height: 20px;
@@ -33,7 +33,7 @@ page {
     padding-right: 10px;
 }
 
-.score::after {
+.header .score::after {
     content: '成绩';
     display: inline-block;
     height: 17px;
@@ -87,8 +87,8 @@ page {
     border-radius: 20px 0 0 20px;
     z-index: 10;
     opacity: 1;
-    animation: fill 15s steps(1, end) 1;
-    animation-fill-mode: forwards;
+    -webkit-animation: fill 15s steps(1, end) 1;
+    -webkit-animation-fill-mode: forwards;
 }
 .timer-wrapper .right {
     box-sizing: border-box;
@@ -102,8 +102,8 @@ page {
     border-radius: 0 20px 20px 0;
     z-index: 10;
     opacity: 1;
-    animation: mask 15s steps(1, end) 1;
-    animation-fill-mode: forwards;
+    -webkit-animation: mask 15s steps(1, end) 1;
+    -webkit-animation-fill-mode: forwards;
 }
 .timer-wrapper .rotate {
     box-sizing: border-box;
@@ -117,20 +117,20 @@ page {
     border-left:none;
     border-radius: 0 20px 20px 0;
     z-index: 20;
-    transform-origin: 0 50%;
-    animation: rota 15s linear 1;
-    animation-fill-mode: forwards;
+    -webkit-transform-origin: 0 50%;
+    -webkit-animation: rota 15s linear 1;
+    -webkit-animation-fill-mode: forwards;
 }
 
 .timer-wrapper.paused .left, .timer-wrapper.paused .right, .timer-wrapper.paused .rotate {
-    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
 }
 .timer-wrapper.no-animation .left, .timer-wrapper.no-animation .right, .timer-wrapper.no-animation .rotate {
-    animation-name: initial;
+    -webkit-animation-name: initial;
 }
 @keyframes rota {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0%   { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
 }
 @keyframes fill {
     0%        { border-color: rgb(94,181,84); }
@@ -141,8 +141,8 @@ page {
     50%, 100% { z-index: 30; }
 }
 @keyframes scaleIn {
-    0%        {transform: scale(0);}
-    100%      {transform: scale(1);}
+    0%        {-webkit-transform: scale(0);}
+    100%      {-webkit-transform: scale(1);}
 }
 
 .main {
@@ -157,15 +157,19 @@ page {
   height: 180px;
 }
 
+#word-chain .word-item .word-item-wrapper {
+  height: 60px;
+}
+
 #word-chain .word-item {
   width: 100%;
   text-align: center;
-  animation: scaleIn .3s linear 1;
+  -webkit-animation: scaleIn .3s linear 1;
 }
-#word-chain .word-item:nth-child(2n) .pre-word, #word-chain .word-item:nth-child(2n) .pass{
+#word-chain .word-item-wrapper:nth-child(2n) .pre-word, #word-chain .word-item-wrapper:nth-child(2n) .pass{
   background-color: #fff;
 }
-#word-chain .word-item:nth-child(2n-1) .pre-word, #word-chain .word-item:nth-child(2n-1) .pass{
+#word-chain .word-item-wrapper:nth-child(2n-1) .pre-word, #word-chain .word-item-wrapper:nth-child(2n-1) .pass{
   background-color: rgb(247, 254, 236);
 }
 #word-chain .word-item .pre-word {
@@ -209,10 +213,10 @@ page {
   border-top-left-radius: 10px;
   background-color: rgb(234, 244, 233);
 }
-#word-chain .word-item:last-child .pass {
+#word-chain .word-item-wrapper:last-child .pass {
   display: none;
 }
-#word-chain .word-item:last-child .pre-word .last-ltter {
+#word-chain .word-item-wrapper:last-child .pre-word .last-ltter {
   color:rgb(75, 177, 67);
 }
 #word-chain .word-item .pre-word:first-letter {
@@ -265,7 +269,7 @@ page {
 }
 
 #answer-wrapper.focus #answer-input {
-  animation: blink 1s infinite steps(1, start);
+  -webkit-animation: blink 1s infinite steps(1, start);
 }
 
 .input-wrapper .arrow {
@@ -334,4 +338,60 @@ page {
 
 #keyboard .second-line text:first-child, #keyboard .third-line text:first-child {
   margin-left: 6%;
+}
+
+.end-modal {
+  position: fixed;
+}
+
+.modal-header {
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  color:rgb(159, 184, 138);
+}
+
+.modal-content {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top:24%;
+  margin: 0 auto;
+  padding: 30px 0 20px;
+  width: 90%;
+  background-color: #fff;
+  text-align: center;
+  z-index: 2;
+  border-radius: 5px;
+  color:rgb(159, 184, 138);
+}
+
+.modal-content .score {
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.modal-content #restart {
+  margin-top: 30px;
+  width: 36%;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  background-color: rgb(159, 184, 138);
+}
+
+.end-modal:before {
+  position: fixed;
+  content: '';
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(0,0,0,.12);
 }

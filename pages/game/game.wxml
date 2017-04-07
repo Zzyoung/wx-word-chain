@@ -10,9 +10,11 @@
     </view>
     <view class="main">
       <scroll-view id="word-chain" scroll-y="true" scroll-top="{{scrollTop}}">
-        <view class="word-item" wx:for="{{wordChain}}" wx:key="unique" wx:for-item="word">
-            <text class="pre-word">{{word.preWord}}<text class="last-letter">{{word.lastLetter}}</text></text>
-            <view class="pass"></view>
+        <view class="word-item-wrapper" wx:for="{{wordChain}}" wx:key="unique" wx:for-item="word">
+            <view class="word-item">
+                <text class="pre-word">{{word.preWord}}<text class="last-letter">{{word.lastLetter}}</text></text>
+                <view class="pass"></view>
+            </view>
         </view>
       </scroll-view>
     </view>
@@ -57,5 +59,15 @@
         <text data-letter="n">n</text>
         <text data-letter="m">m</text>
         <text class="del" data-letter="delete">删除</text>
+    </view>
+</view>
+<view class="end-modal" wx:if="{{gameover}}">
+    <view class="modal-content">
+        <view class="modal-header">
+        {{resultMsg}}
+        </view>
+        <view class="score">{{score}}</view>
+        <view>接龙长度</view>
+        <button id="restart" bindtap="restart">再玩一次</button>
     </view>
 </view>
