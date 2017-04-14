@@ -7,7 +7,7 @@ Page({
   },
   onShareAppMessage: function () {
       return {
-          title: '[小程序]单词接龙（测试分享功能）',
+          title: '[小程序]单词接龙',
           path: '/pages/index/index',
           success: function(res) {
               // 分享成功

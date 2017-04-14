@@ -105,7 +105,7 @@ Page({
             this.setData({
                 errorMsg: ' '
             });
-            this.answer(computer.default.responseAnswer(word.slice(0,1)), 'computer');
+            this.answer(computer.default.responseAnswer(word.slice(word.length - 1)), 'computer');
         }
     },
     linear: function (t, b, c, d) {
